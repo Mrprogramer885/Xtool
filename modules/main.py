@@ -1,7 +1,6 @@
 import time
 import os
 import colorama
-import iposint
 import requests
 import json
 from colorama import Fore, Style, init
