@@ -1,0 +1,11 @@
+changelog to 0.1 Alpha version:
+
+--First version of Xtool--
+
+-Added IP and Phone OSINT
+
+-Program Closed-Circled (it can run in loop)
+
+We are happy for things we already did and more of them will come in future
+
+Thanks to everyone reading this from Developer and Owner of Xtool: Petrvrba03
