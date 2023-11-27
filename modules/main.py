@@ -3,6 +3,8 @@ import os
 import colorama
 import requests
 import json
+import phonenumbers
+from phonenumbers import geocoder, carrier, timezone
 from colorama import Fore, Style, init
 init(autoreset=True)
 
@@ -15,9 +17,53 @@ C = Fore.CYAN #{C}
 W = Fore.WHITE #{W}
 Y = Fore.YELLOW #{Y}
 
+def phonesearch():
+    try:
 
+        User_phone = input(f"\n {W}Enter phone number target {G}Ex [+6281xxxxxxxxx] {W}: {G}")  # INPUT NUMBER PHONE
+        default_region = "ID"  # DEFAULT NEGARA INDONESIA
+
+        parsed_number = phonenumbers.parse(User_phone, default_region)  # VARIABLE PHONENUMBERS
+        region_code = phonenumbers.region_code_for_number(parsed_number)
+        jenis_provider = carrier.name_for_number(parsed_number, "en")
+        location = geocoder.description_for_number(parsed_number, "id")
+        is_valid_number = phonenumbers.is_valid_number(parsed_number)
+        is_possible_number = phonenumbers.is_possible_number(parsed_number)
+        formatted_number = phonenumbers.format_number(parsed_number, phonenumbers.PhoneNumberFormat.INTERNATIONAL)
+        formatted_number_for_mobile = phonenumbers.format_number_for_mobile_dialing(parsed_number, default_region,
+                                                                                     with_formatting=True)
+        number_type = phonenumbers.number_type(parsed_number)
+        timezone1 = timezone.time_zones_for_number(parsed_number)
+        timezoneF = ', '.join(timezone1)
+
+        print(f"\n {W}========== {G}SHOW INFORMATION PHONE NUMBERS {W}==========")
+        print(f"\n {W}Location             :{G} {location}")
+        print(f" {W}Region Code          :{G} {region_code}")
+        print(f" {W}Timezone             :{G} {timezoneF}")
+        print(f" {W}Operator             :{G} {jenis_provider}")
+        print(f" {W}Valid number         :{G} {is_valid_number}")
+        print(f" {W}Possible number      :{G} {is_possible_number}")
+        print(f" {W}International format :{G} {formatted_number}")
+        print(f" {W}Mobile format        :{G} {formatted_number_for_mobile}")
+        print(f" {W}Original number      :{G} {parsed_number.national_number}")
+        print(f" {W}E.164 format         :{G} {phonenumbers.format_number(parsed_number, phonenumbers.PhoneNumberFormat.E164)}")
+        print(f" {W}Country code         :{G} {parsed_number.country_code}")
+        print(f" {W}Local number         :{G} {parsed_number.national_number}")
+        input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press Enter to continue")
+        from main import mainopt
+        mainopt()
+        if number_type == phonenumbers.PhoneNumberType.MOBILE:
+            print(f" {W}Type                 :{G} This is a mobile number")
+        elif number_type == phonenumbers.PhoneNumberType.FIXED_LINE:
+            print(f" {W}Type                 :{G} This is a fixed-line number")
+        else:
+            print(f" {W}Type                 :{G} This is another type of number")
+
+    except KeyboardInterrupt:
+        print(f" {W}[{Y}!{W}] {Y}PROGRAM STOPPED...")
+        
 def IP_Track():
-    ip = input(f"{W}\n Enter IP target : {G}") #INPUT IP ADDRESS
+    ip = input(f"{W}\n{G}[{G}{Y}+{Y}{G}]{G} Enter IP target : {G}") #INPUT IP ADDRESS
     print()
     print(f' {W}============= {G}SHOW INFORMATION IP ADDRESS {W}=============')
     req_api = requests.get(f"http://ipwho.is/{ip}") #API IPWHOIS.IS
@@ -53,7 +99,7 @@ def IP_Track():
     print(f"{W} Offset          :{G}", ip_data["timezone"]["offset"])
     print(f"{W} UTC             :{G}", ip_data["timezone"]["utc"])
     print(f"{W} Current Time    :{G}", ip_data["timezone"]["current_time"])
-    input("Press enter to continue")
+    input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Press enter to continue")
     from main import mainopt
     mainopt()
 
@@ -79,9 +125,21 @@ def mainopt():
       {R}[99]: Exit Xtool{R}
       {Y}---------------------------------------- 
       """)
-    selvar = input(f"{G}[{G}{C}*{C}{G}]{G}{W}Select option and press enter >> {W}")
+    selvar = input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Select option and press enter >> {W}")
     
     if selvar == '1':
         from main import IP_Track
         IP_Track()
+    if selvar == '2':
+        from main import phonesearch
+        phonesearch()
+    if selvar == '99':
+        print(f"{R}Xtool terminated{R}")
+        os.system('cls')
+        time.sleep(0.5)
+        print(f"{Y}PRO TIP: Execute command {W}'bash run.sh'{W} {Y}from Xtool directory to start Xtool{Y}")  
+    else:
+        print(f"{R}Invalid selection{R}")  
+        from main import mainopt
+        mainopt()  
     
