@@ -4,6 +4,9 @@ import colorama
 import requests
 import json
 import phonenumbers
+import urllib3
+import namesearch
+from namesearch import namesearch
 from phonenumbers import geocoder, carrier, timezone
 from colorama import Fore, Style, init
 init(autoreset=True)
@@ -62,7 +65,7 @@ def phonesearch():
     except KeyboardInterrupt:
         print(f" {W}[{Y}!{W}] {Y}PROGRAM STOPPED...")
         
-def IP_Track():
+def IP_Track():  
     ip = input(f"{W}\n{G}[{G}{Y}+{Y}{G}]{G} Enter IP target : {G}") #INPUT IP ADDRESS
     print()
     print(f' {W}============= {G}SHOW INFORMATION IP ADDRESS {W}=============')
@@ -104,12 +107,14 @@ def IP_Track():
     mainopt()
 
 
+
 def mainopt():
+    time.sleep(1.0)
     print(f"""
       {Y}--------------------------------------
       {G}[1]: {Y}IP search{Y}
       {G}[2]: {Y}Phone Search{Y}
-      {G}[3]: {Y}Instagram search{Y} {R}(WIP)
+      {G}[3]: {Y}Instagram search{Y} 
       {G}[4]: {Y}Google dorks{Y} {R}(WIP)
       {G}[5]: {Y}Email search{Y} {R}(WIP)
       {G}[6]: {Y}username osint{Y} {R}(WIP)
@@ -133,11 +138,19 @@ def mainopt():
     if selvar == '2':
         from main import phonesearch
         phonesearch()
-    if selvar == '99':
-        print(f"{R}Xtool terminated{R}")
+    if selvar == '3':
+        username = input(f"{W}Enter Username: ")
+        results = namesearch(username)
+        for site, url in results.items():
+            print(f"[+] {site} : {url}")
+        input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Press enter to continue")
+        
+    if selvar == '99': 
         os.system('cls')
+        print(f"{R}Xtool terminated{R}")
         time.sleep(0.5)
-        print(f"{Y}PRO TIP: Execute command {W}'bash run.sh'{W} {Y}from Xtool directory to start Xtool{Y}")  
+        print(f"{Y}PRO TIP: Execute command {W}'bash run.sh'{W} {Y}from Xtool directory to start Xtool{Y}")
+        exit(0) 
     else:
         print(f"{R}Invalid selection{R}")  
         from main import mainopt
