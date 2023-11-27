@@ -1,4 +1,5 @@
 import time
+import requests
 
 import colorama
 from colorama import Fore, Style, init
@@ -13,7 +14,7 @@ C = Fore.CYAN #{C}
 W = Fore.WHITE #{W}
 Y = Fore.YELLOW
 
-
+             
 
 print(F"""{C}██╗░░██╗████████╗░█████╗░░█████╗░██╗░░░░░
 ╚██╗██╔╝╚══██╔══╝██╔══██╗██╔══██╗██║░░░░░

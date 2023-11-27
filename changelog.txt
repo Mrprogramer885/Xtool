@@ -1,4 +1,4 @@
-changelog to 0.1 Alpha version:
+changelog to 1.0.0 Alpha version:
 
 --First version of Xtool--
 

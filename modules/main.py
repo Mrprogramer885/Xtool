@@ -112,12 +112,12 @@ def mainopt():
     time.sleep(1.0)
     print(f"""
       {Y}--------------------------------------
-      {G}[1]: {Y}IP search{Y}
-      {G}[2]: {Y}Phone Search{Y}
-      {G}[3]: {Y}Instagram search{Y} 
+      {G}[1]: {Y}IP search{Y} {G}(Available)
+      {G}[2]: {Y}Phone Search{Y} {G} (Available)
+      {G}[3]: {Y}Instagram search{Y} {R}(WIP)
       {G}[4]: {Y}Google dorks{Y} {R}(WIP)
       {G}[5]: {Y}Email search{Y} {R}(WIP)
-      {G}[6]: {Y}username osint{Y} {R}(WIP)
+      {G}[6]: {Y}username osint{Y} {G}(Available)
       {G}[7]: {Y}Social media search{Y} {R}(WIP)
       {G}[8]: {Y}Github search{Y} {R}(WIP)
       {G}[9]: {Y}Port scan{Y} {R}(TCP)
@@ -138,12 +138,19 @@ def mainopt():
     if selvar == '2':
         from main import phonesearch
         phonesearch()
-    if selvar == '3':
+    if selvar == '6':
         username = input(f"{W}Enter Username: ")
         results = namesearch(username)
         for site, url in results.items():
             print(f"[+] {site} : {url}")
         input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Press enter to continue")
+    if selvar == '11':
+        with open('changelog.txt', 'r') as file:
+            content = file.read()
+            print(content)
+            input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
+            from main import mainopt
+            mainopt()     
         
     if selvar == '99': 
         os.system('cls')

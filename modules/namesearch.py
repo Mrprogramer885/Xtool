@@ -41,6 +41,7 @@ def namesearch(username):
         {"url": "https://www.snapchat.com/add/{}", "name": "Snapchat"},
         {"url": "https://www.telegram.me/{}", "name": "Telegram"},
         {"url": "https://www.weheartit.com/{}", "name": "We Heart It"}
+        
     ]
 
     for site in social_media:
