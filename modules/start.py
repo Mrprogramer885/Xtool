@@ -33,9 +33,8 @@ def start():
 
 def netchk():
     try:
-        # Try to make a simple HTTP GET request to a reliable server (e.g., Google's homepage)
         response = requests.get("http://www.google.com", timeout=3)
-        response.raise_for_status()  # Raise an exception for HTTP errors
+        response.raise_for_status()  
         return True
     except requests.RequestException:
         pass
