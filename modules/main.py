@@ -23,10 +23,10 @@ Y = Fore.YELLOW #{Y}
 def phonesearch():
     try:
 
-        User_phone = input(f"\n {W}Enter phone number target {G}Ex [+6281xxxxxxxxx] {W}: {G}")  # INPUT NUMBER PHONE
-        default_region = "ID"  # DEFAULT NEGARA INDONESIA
+        User_phone = input(f"\n {G}[{G}{Y}+{Y}{G}]{G}{W}Enter phone number target {G}Ex [+6281xxxxxxxxx] {W}: {G}")  
+        default_region = "ID"  
 
-        parsed_number = phonenumbers.parse(User_phone, default_region)  # VARIABLE PHONENUMBERS
+        parsed_number = phonenumbers.parse(User_phone, default_region)  
         region_code = phonenumbers.region_code_for_number(parsed_number)
         jenis_provider = carrier.name_for_number(parsed_number, "en")
         location = geocoder.description_for_number(parsed_number, "id")
@@ -63,7 +63,7 @@ def phonesearch():
             print(f" {W}Type                 :{G} This is another type of number")
 
     except KeyboardInterrupt:
-        print(f" {W}[{Y}!{W}] {Y}PROGRAM STOPPED...")
+        print(f"")
         
 def IP_Track():  
     ip = input(f"{W}\n{G}[{G}{Y}+{Y}{G}]{G} Enter IP target : {G}") #INPUT IP ADDRESS
@@ -106,7 +106,36 @@ def IP_Track():
     from main import mainopt
     mainopt()
 
+def chkver():
+    raw_url = 'https://raw.githubusercontent.com/Mrprogramer885/source/main/versioninfo.txt'
 
+    try:   
+        response = requests.get(raw_url)
+        response.raise_for_status()  
+
+        file_content = response.text
+        version_lines = [line.strip() for line in file_content.split('\n') if line.strip().startswith('Version:')]
+        if version_lines:
+            version_line = version_lines[0]
+            _, version_str = version_line.split(':', 1)
+            version_str = version_str.strip()
+            if version_str > '1.1.0':
+                print(f"{G}[{G}{Y}+{Y}{G}]{G}{G}New update available.{G}")
+                input()
+                from main import mainopt
+                mainopt()
+            else:
+                print(f"{G}[{G}{Y}+{Y}{G}]{G}{G}No updates available.{G}")
+                input()
+                from main import mainopt
+                mainopt()
+        else:
+            print(f"{G}[{G}{Y}+{Y}{G}]{G}{G}Version information not found in the file.{G}")
+            input()
+            from main import mainopt
+            mainopt()
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred: {e}")
 
 def mainopt():
     time.sleep(1.0)
@@ -121,8 +150,8 @@ def mainopt():
       {G}[7]: {Y}Social media search{Y} {R}(WIP)
       {G}[8]: {Y}Github search{Y} {R}(WIP)
       {G}[9]: {Y}Port scan{Y} {R}(TCP)
-      {G}[10]: {Y}Check for updates{Y} {R}(WIP)
-      {G}[11]: {Y}Changelog{Y} {R}(WIP)
+      {G}[10]: {Y}Check for updates{Y} {G}(Available)
+      {G}[11]: {Y}Changelog{Y} {G}(Available)
       {G}[12]: {Y}Delete Cache{Y} {R}(WIP)
       {G}[13]: {Y}Delete all Xtool data{Y} {R}(WIP)
       {G}[14]: {Y}Uninstall{Y} {R}(WIP)
@@ -139,11 +168,19 @@ def mainopt():
         from main import phonesearch
         phonesearch()
     if selvar == '6':
-        username = input(f"{W}Enter Username: ")
+        username = input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Enter Username: ")
         results = namesearch(username)
         for site, url in results.items():
             print(f"[+] {site} : {url}")
         input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Press enter to continue")
+    if selvar == '10':
+        print(f"{G}[{G}{Y}+{Y}{G}]{G}Fetching github data...")
+        from main import chkver
+        chkver()
+        input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
+        from main import mainopt
+        mainopt()
+            
     if selvar == '11':
         with open('changelog.txt', 'r') as file:
             content = file.read()
@@ -159,7 +196,7 @@ def mainopt():
         print(f"{Y}PRO TIP: Execute command {W}'bash run.sh'{W} {Y}from Xtool directory to start Xtool{Y}")
         exit(0) 
     else:
-        print(f"{R}Invalid selection{R}")  
+        print(f"{G}[{G}{Y}+{Y}{G}]{G}{R}Invalid selection{R}")  
         from main import mainopt
         mainopt()  
     
