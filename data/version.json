@@ -1,0 +1,8 @@
+
+{
+    "version": "2.16.8",
+    "name": "JSON code serializer",
+    "description": "serializer module for JavaScript Object Notation (JSON) code. using newest build architecture.",
+    "path": "Unspecified",
+    "executable": "yes"
+  }

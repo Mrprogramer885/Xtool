@@ -13,6 +13,8 @@ read
 echo installing packages...
 pip install phonenumbers
 echo phonenumbers lookup database downloaded
+pip install instaloader
+echo instagram lookup API installed.
 pip install requests
 echo requests package downloaded
 pip install colorama

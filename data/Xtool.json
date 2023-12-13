@@ -1,0 +1,18 @@
+{
+    "Xtool": {
+      "name": "Xtool",
+      "ProgramSize": "10 Kb", 
+      "installedSize": "78 Mb", 
+      "creator": "@PetrVrba03",
+      "latestVersion": "1.1.5",
+      "website": "https://github.com/Mrprogramer885/Xtool",
+      "packages": {
+        "phonenumbers": "8.12.7",
+        "requests": "2.31.0",
+        "urllib3": "1.26.28",
+        "colorama": "$",
+        "json": "$",
+        "os": "$"
+      }
+    }
+  }

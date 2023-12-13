@@ -5,13 +5,14 @@ import requests
 import json
 import phonenumbers
 import urllib3
-import namesearch
+import instaloader
 from namesearch import namesearch
 from phonenumbers import geocoder, carrier, timezone
 from colorama import Fore, Style, init
 init(autoreset=True)
 
-# Define shorthand for Fore.BLUE
+
+
 B = Fore.BLUE #{B}
 G = Fore.GREEN #{G}
 R = Fore.RED #{R}
@@ -19,6 +20,33 @@ M = Fore.MAGENTA #{M}
 C = Fore.CYAN #{C}
 W = Fore.WHITE #{W}
 Y = Fore.YELLOW #{Y}
+
+def IgAccInfo():
+    # Get target username from user input
+    target_username = input("Enter the Instagram username: ")
+
+    L = instaloader.Instaloader()
+
+    try:
+        profile = instaloader.Profile.from_username(L.context, target_username)
+        
+        print(f"Username: {profile.username}")
+        print(f"User ID: {profile.userid}")
+        print(f"Number of Followers: {profile.followers}")
+        print(f"Number of Following: {profile.followees}")
+        print(f"Number of Posts: {profile.mediacount}")
+        print(f"Full Name: {profile.full_name}")
+        print(f"Biography: {profile.biography}")
+        print(f"Profile Picture URL: {profile.profile_pic_url}")
+        print(f"External URL: {profile.external_url}")
+        print(f"Is Private: {profile.is_private}")
+        input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
+        from main import mainopt
+        mainopt()
+        
+
+    except instaloader.exceptions.InstaloaderException as e:
+        print(f"Error: {e}")
 
 def phonesearch():
     try:
@@ -142,24 +170,27 @@ def mainopt():
     print(f"""
       {Y}--------------------------------------
       {G}[1]: {Y}IP search{Y} {G}(Available)
-      {G}[2]: {Y}Phone Search{Y} {G} (Available)
-      {G}[3]: {Y}Instagram search{Y} {R}(WIP)
+      {G}[2]: {Y}Phone Search{Y} {G}(Available)
+      {G}[3]: {Y}Instagram search{Y} {G}(Available)
       {G}[4]: {Y}Google dorks{Y} {R}(WIP)
       {G}[5]: {Y}Email search{Y} {R}(WIP)
       {G}[6]: {Y}username osint{Y} {G}(Available)
       {G}[7]: {Y}Social media search{Y} {R}(WIP)
       {G}[8]: {Y}Github search{Y} {R}(WIP)
-      {G}[9]: {Y}Port scan{Y} {R}(TCP)
+      {G}[9]: {Y}Port scan{Y} {R}(WIP)
       {G}[10]: {Y}Check for updates{Y} {G}(Available)
       {G}[11]: {Y}Changelog{Y} {G}(Available)
       {G}[12]: {Y}Delete Cache{Y} {R}(WIP)
       {G}[13]: {Y}Delete all Xtool data{Y} {R}(WIP)
       {G}[14]: {Y}Uninstall{Y} {R}(WIP)
+      {Y} additional CLI commands (not used as arguments)
+      -help -exit 
       
       {R}[99]: Exit Xtool{R}
+      
       {Y}---------------------------------------- 
       """)
-    selvar = input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Select option and press enter >> {W}")
+    selvar = input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Select option or command and press enter >> {W}")
     
     if selvar == '1':
         from main import IP_Track
@@ -167,6 +198,9 @@ def mainopt():
     if selvar == '2':
         from main import phonesearch
         phonesearch()
+    if selvar == '3':
+        from main import IgAccInfo
+        IgAccInfo()
     if selvar == '6':
         username = input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Enter Username: ")
         results = namesearch(username)
@@ -179,22 +213,38 @@ def mainopt():
         chkver()
         input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
         from main import mainopt
-        mainopt()
-            
+        mainopt()       
     if selvar == '11':
         with open('changelog.txt', 'r') as file:
             content = file.read()
             print(content)
             input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
             from main import mainopt
-            mainopt()     
-        
+            mainopt()            
     if selvar == '99': 
         os.system('cls')
         print(f"{R}Xtool terminated{R}")
         time.sleep(0.5)
         print(f"{Y}PRO TIP: Execute command {W}'bash run.sh'{W} {Y}from Xtool directory to start Xtool{Y}")
-        exit(0) 
+        exit(0)
+    if selvar == '-h':
+        with open('help.txt', 'r') as file:
+            content = file.read()
+            print(content)
+            input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
+            from main import mainopt 
+    if selvar == '-help':
+        with open('help.txt', 'r') as file:
+            content = file.read()
+            print(content)
+            input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
+            from main import mainopt   
+    if selvar == '-exit': 
+        os.system('cls')
+        print(f"{R}Xtool terminated{R}")
+        time.sleep(0.5)
+        print(f"{Y}PRO TIP: Execute command {W}'bash run.sh'{W} {Y}from Xtool directory to start Xtool{Y}")
+        exit(0)     
     else:
         print(f"{G}[{G}{Y}+{Y}{G}]{G}{R}Invalid selection{R}")  
         from main import mainopt
