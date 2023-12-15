@@ -21,12 +21,38 @@ C = Fore.CYAN #{C}
 W = Fore.WHITE #{W}
 Y = Fore.YELLOW #{Y}
 
+def XtInfo(json_file_path):
+    """
+    Reads a JSON file and prints information about the Xtool.
+
+    :param json_file_path: Path to the JSON file.
+    """
+    # Open the JSON file and load the data
+    with open(json_file_path, 'r') as file:
+        data = json.load(file)
+
+    # Extract information from the JSON structure
+    xtool_info = data.get("Xtool", {})
+
+    # Print information about Xtool
+    print(f"Name: {xtool_info.get('name', '')}")
+    print(f"Program Size: {xtool_info.get('ProgramSize', '')}")
+    print(f"Installed Size: {xtool_info.get('installedSize', '')}")
+    print(f"Creator: {xtool_info.get('creator', '')}")
+    print(f"Latest Version: {xtool_info.get('latestVersion', '')}")
+    print(f"Website: {xtool_info.get('website', '')}")
+
+    print("\nPackages:")
+    packages = xtool_info.get('packages', {})
+    for package_name, package_version in packages.items():
+        print(f"{package_name}: {package_version}")
+
 def IgAccInfo():
     # Get target username from user input
     target_username = input("Enter the Instagram username: ")
-
     L = instaloader.Instaloader()
 
+    # Load login credentials from file using the target username
     try:
         profile = instaloader.Profile.from_username(L.context, target_username)
         
@@ -40,7 +66,10 @@ def IgAccInfo():
         print(f"Profile Picture URL: {profile.profile_pic_url}")
         print(f"External URL: {profile.external_url}")
         print(f"Is Private: {profile.is_private}")
-        input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
+        print(f"Is Verified: {profile.is_verified}")
+        print(f"Business Account: {profile.is_business_account}")
+        print(f"Business Category: {profile.business_category_name}")
+        input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Press Enter to continue")
         from main import mainopt
         mainopt()
         
@@ -180,11 +209,11 @@ def mainopt():
       {G}[9]: {Y}Port scan{Y} {R}(WIP)
       {G}[10]: {Y}Check for updates{Y} {G}(Available)
       {G}[11]: {Y}Changelog{Y} {G}(Available)
-      {G}[12]: {Y}Delete Cache{Y} {R}(WIP)
+      {G}[12]: {Y}Xtool info{Y} {R}(WIP)
       {G}[13]: {Y}Delete all Xtool data{Y} {R}(WIP)
       {G}[14]: {Y}Uninstall{Y} {R}(WIP)
       {Y} additional CLI commands (not used as arguments)
-      -help -exit 
+      -help -exit -info
       
       {R}[99]: Exit Xtool{R}
       
@@ -220,7 +249,11 @@ def mainopt():
             print(content)
             input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
             from main import mainopt
-            mainopt()            
+            mainopt()
+    if selvar == '12':
+        XtInfo('Xtool.json')  
+        input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
+        from main import mainopt          
     if selvar == '99': 
         os.system('cls')
         print(f"{R}Xtool terminated{R}")
@@ -244,7 +277,12 @@ def mainopt():
         print(f"{R}Xtool terminated{R}")
         time.sleep(0.5)
         print(f"{Y}PRO TIP: Execute command {W}'bash run.sh'{W} {Y}from Xtool directory to start Xtool{Y}")
-        exit(0)     
+        exit(0)         
+    if selvar == '-info':
+        XtInfo('Xtool.json')  
+        input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
+        from main import mainopt
+        mainopt()      
     else:
         print(f"{G}[{G}{Y}+{Y}{G}]{G}{R}Invalid selection{R}")  
         from main import mainopt

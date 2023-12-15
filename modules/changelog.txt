@@ -1,11 +1,14 @@
-changelog to 1.0.0 Alpha version:
+changelog to 1.1.5 Beta version:
 
---First version of Xtool--
+--Added username and instagram osint
 
--Added IP and Phone OSINT
+--changed style and design of Xtool
 
--Program Closed-Circled (it can run in loop)
+--Fixed more bugs
 
-We are happy for things we already did and more of them will come in future
+--Added 3 CLI commands
 
-Thanks to everyone reading this from Developer and Owner of Xtool: Petrvrba03
+--Added help commands
+
+I am very happy that you downloaded Xtool and i hope it will helps you with anything that requires it
+PetrVrba03 (Only developer of Xtool)

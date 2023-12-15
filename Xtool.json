@@ -1,0 +1,20 @@
+{
+    "Xtool": {
+      "name": "Xtool",
+      "ProgramSize": "50 Kb", 
+      "installedSize": "78 Mb", 
+      "creator": "@PetrVrba03",
+      "latestVersion": "1.1.5",
+      "Description": "Lightweight and robust OSINT tool made with python.",
+      "Dependencies": "python3, pip",
+      "website": "https://github.com/Mrprogramer885/Xtool",
+      "packages": {
+        "phonenumbers": "8.12.7",
+        "requests": "2.31.0",
+        "urllib3": "1.26.28",
+        "colorama": "$",
+        "json": "$",
+        "os": "$"
+      }
+    }
+  }
