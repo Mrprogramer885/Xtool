@@ -276,6 +276,7 @@ def mainopt():
         os.system('cls')
         print(f"{R}Xtool terminated{R}")
         time.sleep(0.5)
+        print(f"{W}Thanks for using Xtool{W}")
         print(f"{Y}PRO TIP: Execute command {W}'bash run.sh'{W} {Y}from Xtool directory to start Xtool{Y}")
         exit(0)         
     if selvar == '-info':
