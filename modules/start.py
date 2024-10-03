@@ -23,7 +23,7 @@ def start():
 ╚═╝░░╚═╝░░░╚═╝░░░░╚════╝░░╚════╝░╚══════╝{C}""")
     time.sleep(1)
     print(F"{G}Developed by:{G} {R}Cz3chC0d3X{R}")
-    print(F"{G}Version:{G} {R}1.0.0 Stable{R}")
+    print(F"{G}Version:{G} {R}1.1.0 Stable{R}")
     time.sleep(0.4)
     input(f" {G}[{G}{Y}+{Y}{G}]{G} {W}Press enter to start Xtool{W}")
     time.sleep(0.6)
