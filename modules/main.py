@@ -176,7 +176,7 @@ def chkver():
             version_line = version_lines[0]
             _, version_str = version_line.split(':', 1)
             version_str = version_str.strip()
-            if version_str > '1.1.0':
+            if version_str > '1.1.5':
                 print(f"{G}[{G}{Y}+{Y}{G}]{G}{G}New update available.{G}")
                 input()
                 from main import mainopt
