@@ -2,7 +2,8 @@
 # WARNING, I AM NOT RESPONSIBLE FOR ANYTHING THAT HAPPENS WHEN USING XTOOL
 #### As to 2. October 2024, i have finally managed to completely recode Xtool as i lost my new version when my PC drive corrupted. Expect an Update to drop in few days.
 
-|Supports|
+|Supports|h|
+|h|
 
 ### Xtool is complete osint framework developed in Python, providing features like IP lookup, phone number lookup, username and instagram lookup and etc...
 Currently Xtool is being maintained just by me.
