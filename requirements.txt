@@ -1,8 +1,8 @@
-google==3.0.0
-requests==2.31.0
-urllib3==1.26.18
-phonenumbers==8.12.7
-soupsieve==2.2
+google==3.0.1
+requests==2.31.1
+urllib3==2.0.7
+phonenumbers==8.13.18
+soupsieve==2.5
 beautifulsoup4==4.9.3
 certifi==2023.7.22
 chardet==4.0.0

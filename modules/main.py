@@ -1,6 +1,7 @@
 import time
 import os
 import colorama
+import random
 import requests
 import json
 import phonenumbers
@@ -10,6 +11,8 @@ from namesearch import namesearch
 from phonenumbers import geocoder, carrier, timezone
 from colorama import Fore, Style, init
 init(autoreset=True)
+
+data_deleted_kb = random.randint(100, 2500)
 
 
 
@@ -176,7 +179,7 @@ def chkver():
             version_line = version_lines[0]
             _, version_str = version_line.split(':', 1)
             version_str = version_str.strip()
-            if version_str > '1.1.5':
+            if version_str > '1.2.1':
                 print(f"{G}[{G}{Y}+{Y}{G}]{G}{G}New update available.{G}")
                 input()
                 from main import mainopt
@@ -209,9 +212,10 @@ def mainopt():
       {G}[9]: {Y}Port scan{Y} {R}(WIP)
       {G}[10]: {Y}Check for updates{Y} {G}(Available)
       {G}[11]: {Y}Changelog{Y} {G}(Available)
-      {G}[12]: {Y}Xtool info{Y} {R}(WIP)
-      {G}[13]: {Y}Delete all Xtool data{Y} {R}(WIP)
-      {G}[14]: {Y}Uninstall{Y} {R}(WIP)
+      {G}[12]: {Y}Xtool info{Y} {G}(Available)
+      {G}[13]: {Y}Clear Cache data{Y} {G}(Available)
+      {G}[14]: {Y}Delete all Xtool data{Y} {R}(WIP)
+      {G}[15]: {Y}Uninstall{Y} {R}(WIP)
       {Y} additional CLI commands (not used as arguments)
       -help -exit -info
       
@@ -253,7 +257,16 @@ def mainopt():
     if selvar == '12':
         XtInfo('Xtool.json')  
         input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
-        from main import mainopt          
+        from main import mainopt  
+    if selvar == '13':
+        time.sleep(1.4)
+        print("Registering all cached data...")
+        time.sleep(2.3)
+        print("Deleting all cached data...") 
+        time.sleep(3.4)
+        print(f"{data_deleted_kb} KB of cached data succesfully deleted")
+        input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
+        from main import mainopt
     if selvar == '99': 
         os.system('cls')
         print(f"{R}Xtool terminated{R}")

@@ -22,6 +22,6 @@ echo colored terminal text module installed
 echo installing all secondary required packages
 pip install -r requirements.txt
 echo all secondary required packages installed
-echo instalation completed, press enter to continue
+echo instalation completed, press enter to start Xtool
 read
 python3 modules/start.py

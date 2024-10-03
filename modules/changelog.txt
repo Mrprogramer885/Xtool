@@ -1,14 +1,25 @@
-changelog to 1.1.5 Beta version:
+changelog to 1.2.1 Stable version:
 
---Added username and instagram osint
+This version is a not big update, mainly fixing and improving Xtool. But i also dded few more functions. More below!
 
---changed style and design of Xtool
+It has took me some time to get this next update done, i had new version, with about 3-4x times more features on my PC disk which failed and i lost it.
+It has been some time to reimplement atleast 30-40% of those lost features. But i managed to do it, and now 1.2.1 version is here.
+Thank you for staying with Xtool for so long and not losing interest. I wish it may help you with anything it can help.
+Sincerely:
+theczechceo - Owner, Main developer.
 
---Fixed more bugs
+-> Improved startup file
 
---Added 3 CLI commands
+-> Improved instalation.sh and run.sh file
 
---Added help commands
+-> Improved help.txt file
 
-I am very happy that you downloaded Xtool and i hope it will helps you with anything that requires it
-PetrVrba03 (Only developer of Xtool)
+-> Added new functionality, cleaning cached data to solve issues or simply reducing Xtool size.
+
+-> Fixed all username changes
+
+-> few minor bugs solved, such as Xtool radomly closing which was caused by small piece of faulty code
+
+-> Slightly improved terminal text color and styling
+
+

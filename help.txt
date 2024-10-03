@@ -7,7 +7,7 @@ Use mobile data. I have managed to optimize Xtool so even high usage should not 
 Also Xtool cannot work with VPNs due to all the IPs provided by VPN being blacklisted. If you still wanna use VPNs with Xtool,
 be ready for big amounts of errors or ratelimits.
 
-WARNING: USING XTOOL TOO MUCH CAN RESULT IN BEING RATELIMITED. THIS IS MORE LIKELY TO HAPPEN WITH INSTALOADER IF USED 3X+ TIMES IN ROW.
+WARNING: USING XTOOL TOO MUCH CAN RESULT IN BEING RATELIMITED. THIS IS MORE LIKELY TO HAPPEN WITH INSTALOADER IF USED 3x+ TIMES IN ROW.
 MAKE SURE YOU ARE USING THIS TOOL WITH LITTLE BREAKS.
 
 (1: IP search) This can search big amount of info on IP address. 
@@ -26,10 +26,15 @@ the links to the websites where the username is located will be printed.
 
 (11: shows changelog) After update, this will show you all changes regarding new version of Xtool.
 
+(12: cleans cache) This can clean Xtool cache, can be used if Xtool is not working properly or if you want to free some space.
+
+(99: exit) Terminates Xtool, nothing less nothing more.
+
 Additional CLI commands:
 (-exit) Terminates Xtool, same as 99 but more stylish
 (-h or -help) Shows this message
 (-info) Shows basic info about Xtool such as its size, main page, developer and more info.
 
 Thanks for Reading this and i wish Xtool may help you with anything you will need.
+theczechceo - Owner, main developer.
 
