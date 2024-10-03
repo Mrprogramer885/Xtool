@@ -2,12 +2,12 @@ Xtool help:
 
 First Notice:
 Xtool requires valid internet connection and 100mb of storage for its packages. If you dont have stable internet connection. 
-Use mobile data. Xtool is specially optimized so when normally used it should not consume much of a mobile data.
+Use mobile data. I have managed to optimize Xtool so even high usage should not consume more than 1-3mb of data.
 
-Also Xtool cannot work with VPNs due to the IPs provided by VPN being blacklisted. If you still wanna use VPNs with Xtool,
-be ready for big amounts of errors.
+Also Xtool cannot work with VPNs due to all the IPs provided by VPN being blacklisted. If you still wanna use VPNs with Xtool,
+be ready for big amounts of errors or ratelimits.
 
-WARNING: USING THIS TOOL TO MUCH CAN RESULT IN BEING RATELIMITED. THIS IS MORE LIKELY TO HAPPEN WITH INSTALOADER.
+WARNING: USING XTOOL TOO MUCH CAN RESULT IN BEING RATELIMITED. THIS IS MORE LIKELY TO HAPPEN WITH INSTALOADER IF USED 3X+ TIMES IN ROW.
 MAKE SURE YOU ARE USING THIS TOOL WITH LITTLE BREAKS.
 
 (1: IP search) This can search big amount of info on IP address. 
@@ -22,10 +22,14 @@ The info contains basic profile info like amount of followers, following, userna
 (6: username osint ) This searches given username in 30 websites including facebook, tikok and instagram. if the username exists.
 the links to the websites where the username is located will be printed.
 
+(10: check for update) This will check if new version of Xtool is available, for now, (i could not include automatic update, so in order to update, you need to reinstall entire Xtool from github).
+
+(11: shows changelog) After update, this will show you all changes regarding new version of Xtool.
+
 Additional CLI commands:
 (-exit) Terminates Xtool, same as 99 but more stylish
 (-h or -help) Shows this message
 (-info) Shows basic info about Xtool such as its size, main page, developer and more info.
 
-Thanks for Reading this :)
+Thanks for Reading this and i wish Xtool may help you with anything you will need.
 
