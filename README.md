@@ -1,8 +1,12 @@
 # Xtool
 # WARNING, I AM NOT RESPONSIBLE FOR ANYTHING THAT HAPPENS WHEN USING XTOOL
-### As to 6. August 2024, i have finally managed to re-code Xtool, that means you can expect update in next 3 days. Thanks very much for waiting.
-### Xtool is complete osint framework developed in Python, Xtool is currently in its starting phase, so it has not much to offer now but i am going to be actively working on Xtool so dont hesitate to Install it now.
-### Currently working
+#### As to 2. October 2024, i have finally managed to completely recode Xtool as i lost my new version when my PC drive corrupted. Expect an Update to drop in few days.
+
+|Supports|
+
+### Xtool is complete osint framework developed in Python, providing features like IP lookup, phone number lookup, username and instagram lookup and etc...
+Currently Xtool is being maintained just by me.
+#### For now it does not contains too many features, but i am willing to improve it in future.
 ### How to install Xtool
 ```
 apt install python
