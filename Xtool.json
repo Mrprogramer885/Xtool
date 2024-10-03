@@ -6,7 +6,7 @@
       "creator": "@PetrVrba03",
       "latestVersion": "1.1.5",
       "Description": "Lightweight and robust OSINT tool made with python.",
-      "Dependencies": "python3, pip",
+      "Dependencies": "python3, pip, shell,",
       "website": "https://github.com/Mrprogramer885/Xtool",
       "packages": {
         "phonenumbers": "8.12.7",
