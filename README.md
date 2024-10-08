@@ -1,6 +1,9 @@
 # Xtool
 # WARNING, I AM NOT RESPONSIBLE FOR ANYTHING THAT HAPPENS WHEN USING XTOOL
-#### As to 2. October 2024, i have finally managed to completely recode Xtool as i lost my new version when my PC drive corrupted. Expect an Update to drop in few days.
+#### At first, Xtool was just personal project so i didn't have to switch over multiple OSINT tools and have all my tools in one place. But afterwards i decided to completely rework it and publish it so others can also use it.
+
+### Xtool supports:
+Termux, All linux Distros, windows.
 ##### Legend:
 ✅ - Yes
 ⚠️ - Limited, 
