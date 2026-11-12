@@ -14,6 +14,12 @@ C = Fore.CYAN #{C}
 W = Fore.WHITE #{W}
 Y = Fore.YELLOW #{Y}
 
+url = "https://raw.githubusercontent.com/Mrprogramer885/source/refs/heads/main/devmsg.txt"
+
+text = requests.get(url).text
+
+print(text)
+
 def start():
     print(F"""{C}██╗░░██╗████████╗░█████╗░░█████╗░██╗░░░░░
 ╚██╗██╔╝╚══██╔══╝██╔══██╗██╔══██╗██║░░░░░
