@@ -1,4 +1,4 @@
-# Xtool
+# Xtool | Back after a reaaaaaly long break, expect XTOOL updates again :)
 # WARNING, I AM NOT RESPONSIBLE FOR ANYTHING THAT HAPPENS WHEN USING XTOOL
 #### At first, Xtool was just personal project so i didn't have to switch over multiple OSINT tools and have all my tools in one place. But afterwards i decided to completely rework it and publish it so others can also use it.
 
