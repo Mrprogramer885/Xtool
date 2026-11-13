@@ -5,17 +5,16 @@
 ### Xtool supports:
 Termux, All linux Distros, windows.
 ##### Legend:
-✅ - Yes
-⚠️ - Limited, 
-❌ - No
+✅ - True/Supported/Yes
+⚠️ - Limited/Not functional 
+❌ - Disabled, inactive,
 
 | Version | Available         | Development | Issues fixing  | Project support| Server support| 
 | ------- | ------------------ |------------|----------------|----------------|---------------|
-| 1.2.7    |       ❌         |⏲️        |     ❌     |      ❌      |      ❌       |
-| 1.2.1   | ✅                |  ✅      |  ✅            |   ✅           | ✅          | 
-| 1.1.5   | ✅                | ⚠️        |  ⚠️            |   ⚠️           | ⚠️           |
-| 1.1.0   | ⚠️                | ❌         |  ❌             | ❌             | ⚠️          |
-| 1.0.0    | ⚠️                | ❌        |   ❌          |     ❌          | ❌        |
+| 1.3.0    |        ⏲️        |   ⏲️      |      ⏲️        |      ✅        |      ✅      | 
+| 1.2.5    |       ✅         |⏲️        |          ✅     |      ✅      |      ✅       |
+| 1.2.1   | ❌                |  ✅      |  ⚠️            |   ⚠️           | ⚠️          | 
+| 1.1.5   | ❌                | ❌        |  ❌            |   ❌           | ⚠️           |
 
 ### Xtool is complete osint framework developed in Python, providing features like IP lookup, phone number lookup, username and instagram lookup and etc...
 Currently Xtool is being maintained just by me.

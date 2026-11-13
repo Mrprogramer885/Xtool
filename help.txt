@@ -1,4 +1,4 @@
-Xtool help:
+Xtool help file :)
 
 First Notice:
 Xtool requires valid internet connection and 100mb of storage for its packages. If you dont have stable internet connection. 

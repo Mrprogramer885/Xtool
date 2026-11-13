@@ -1,58 +1,58 @@
 import time
 import requests
+from colorama import Fore, init
 
-import colorama
-from colorama import Fore, Style, init
 init(autoreset=True)
 
-# Define shorthand for Fore.BLUE
-B = Fore.BLUE #{B}
-G = Fore.GREEN #{G}
-R = Fore.RED #{R}
-M = Fore.MAGENTA #{M}
-C = Fore.CYAN #{C}
-W = Fore.WHITE #{W}
-Y = Fore.YELLOW #{Y}
+C = Fore.CYAN
+G = Fore.GREEN
+R = Fore.RED
+Y = Fore.YELLOW
+W = Fore.WHITE
 
-url = "https://raw.githubusercontent.com/Mrprogramer885/source/refs/heads/main/devmsg.txt"
+def netchk():
+    try:
+        response = requests.get("https://www.google.com", timeout=3)
+        response.raise_for_status()
+        return True
+    except requests.RequestException:
+        return False
 
-text = requests.get(url).text
-
-print(text)
+def get_dev_msg():
+    url = "https://raw.githubusercontent.com/Mrprogramer885/source/refs/heads/main/devmsg.txt"
+    try:
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+        print(response.text.strip())
+    except requests.RequestException:
+        print(f"{Y}[!] Could not fetch developer message.{Y}")
 
 def start():
-    print(F"""{C}██╗░░██╗████████╗░█████╗░░█████╗░██╗░░░░░
+    get_dev_msg()
+    print(f"""{C}
+██╗░░██╗████████╗░█████╗░░█████╗░██╗░░░░░
 ╚██╗██╔╝╚══██╔══╝██╔══██╗██╔══██╗██║░░░░░
 ░╚███╔╝░░░░██║░░░██║░░██║██║░░██║██║░░░░░
 ░██╔██╗░░░░██║░░░██║░░██║██║░░██║██║░░░░░
 ██╔╝╚██╗░░░██║░░░╚█████╔╝╚█████╔╝███████╗
 ╚═╝░░╚═╝░░░╚═╝░░░░╚════╝░░╚════╝░╚══════╝{C}""")
     time.sleep(1)
-    print(F"{G}Developed by:{G} {R}theczechceo{R}")
-    print(F"{G}Version:{G} {R}1.2.2 Stable{R}")
+    print(f"{G}Developed by:{G} {R}theczechceo{R}")
+    print(f"{G}Version:{G} {R}1.2.5 Beta{R}")
     time.sleep(0.4)
-    input(f" {G}[{G}{Y}+{Y}{G}]{G} {W}Press enter to start Xtool{W}")
+    input(f" {G}[+]{G} {W}Press enter to start Xtool{W}")
     time.sleep(0.6)
     print(f"{G}..loading modules..{G}")
+    
     from main import mainopt
     mainopt()
 
-def netchk():
-    try:
-        # Try to make a simple HTTP GET request to a reliable server (e.g., Google's homepage)
-        response = requests.get("http://www.google.com", timeout=3)
-        response.raise_for_status()  # Raise an exception for HTTP errors
-        return True
-    except requests.RequestException:
-        pass
-    return False
-             
-if netchk():
-    print(f"{G}Internet is available.{G}")
-    from start import start
-    start()
-else:
-    print(f"{R}No internet connection.{R}")
-    time.sleep("0.9")
-    print(f"{Y}Xtool cannot work without valid internet connection. Make sure you are connected to internet or use mobile data.{Y}")
-    exit(1)
+if __name__ == "__main__":
+    if netchk():
+        print(f"{G}Internet is available.{G}")
+        start()
+    else:
+        print(f"{R}No internet connection.{R}")
+        time.sleep(0.9)
+        print(f"{Y}Xtool cannot work without valid internet connection. Make sure you are connected to internet or use mobile data.{Y}")
+        exit(1)

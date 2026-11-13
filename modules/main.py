@@ -5,57 +5,57 @@ import random
 import requests
 import json
 import phonenumbers
-import urllib3
 import instaloader
 from namesearch import namesearch
 from phonenumbers import geocoder, carrier, timezone
 from colorama import Fore, Style, init
+
 init(autoreset=True)
 
 data_deleted_kb = random.randint(100, 2500)
 
+B = Fore.BLUE 
+G = Fore.GREEN 
+R = Fore.RED 
+M = Fore.MAGENTA 
+C = Fore.CYAN 
+W = Fore.WHITE 
+Y = Fore.YELLOW 
 
-
-B = Fore.BLUE #{B}
-G = Fore.GREEN #{G}
-R = Fore.RED #{R}
-M = Fore.MAGENTA #{M}
-C = Fore.CYAN #{C}
-W = Fore.WHITE #{W}
-Y = Fore.YELLOW #{Y}
+def get_root_path(filename):
+    """Resolves file paths relative to the root Xtool directory."""
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(current_dir, '..', filename)
 
 def XtInfo(json_file_path):
     """
-    Reads a JSON file and prints information about the Xtool.
-
-    :param json_file_path: Path to the JSON file.
+    Reads a JSON file and prints information about the Xtool[cite: 4].
     """
-    # Open the JSON file and load the data
-    with open(json_file_path, 'r') as file:
-        data = json.load(file)
+    try:
+        with open(json_file_path, 'r') as file:
+            data = json.load(file)
 
-    # Extract information from the JSON structure
-    xtool_info = data.get("Xtool", {})
+        xtool_info = data.get("Xtool", {})
 
-    # Print information about Xtool
-    print(f"Name: {xtool_info.get('name', '')}")
-    print(f"Program Size: {xtool_info.get('ProgramSize', '')}")
-    print(f"Installed Size: {xtool_info.get('installedSize', '')}")
-    print(f"Creator: {xtool_info.get('creator', '')}")
-    print(f"Latest Version: {xtool_info.get('latestVersion', '')}")
-    print(f"Website: {xtool_info.get('website', '')}")
+        print(f"Name: {xtool_info.get('name', '')}")
+        print(f"Program Size: {xtool_info.get('ProgramSize', '')}")
+        print(f"Installed Size: {xtool_info.get('installedSize', '')}")
+        print(f"Creator: {xtool_info.get('creator', '')}")
+        print(f"Latest Version: {xtool_info.get('latestVersion', '')}")
+        print(f"Website: {xtool_info.get('website', '')}")
 
-    print("\nPackages:")
-    packages = xtool_info.get('packages', {})
-    for package_name, package_version in packages.items():
-        print(f"{package_name}: {package_version}")
+        print("\nPackages:")
+        packages = xtool_info.get('packages', {})
+        for package_name, package_version in packages.items():
+            print(f"{package_name}: {package_version}")
+    except FileNotFoundError:
+        print(f"{R}Error: {json_file_path} not found.{R}")
 
 def IgAccInfo():
-    # Get target username from user input
+    """Fetches public Instagram account details using Instaloader[cite: 4]."""
     target_username = input("Enter the Instagram username: ")
     L = instaloader.Instaloader()
 
-    # Load login credentials from file using the target username
     try:
         profile = instaloader.Profile.from_username(L.context, target_username)
         
@@ -72,17 +72,15 @@ def IgAccInfo():
         print(f"Is Verified: {profile.is_verified}")
         print(f"Business Account: {profile.is_business_account}")
         print(f"Business Category: {profile.business_category_name}")
-        input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Press Enter to continue")
-        from main import mainopt
-        mainopt()
-        
-
     except instaloader.exceptions.InstaloaderException as e:
         print(f"Error: {e}")
 
-def phonesearch():
-    try:
+    input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Press Enter to continue")
+    mainopt()
 
+def phonesearch():
+    """Performs phone number lookup and parsing[cite: 4]."""
+    try:
         User_phone = input(f"\n {G}[{G}{Y}+{Y}{G}]{G}{W}Enter phone number target {G}Ex [+6281xxxxxxxxx] {W}: {G}")  
         default_region = "ID"  
 
@@ -93,8 +91,7 @@ def phonesearch():
         is_valid_number = phonenumbers.is_valid_number(parsed_number)
         is_possible_number = phonenumbers.is_possible_number(parsed_number)
         formatted_number = phonenumbers.format_number(parsed_number, phonenumbers.PhoneNumberFormat.INTERNATIONAL)
-        formatted_number_for_mobile = phonenumbers.format_number_for_mobile_dialing(parsed_number, default_region,
-                                                                                     with_formatting=True)
+        formatted_number_for_mobile = phonenumbers.format_number_for_mobile_dialing(parsed_number, default_region, with_formatting=True)
         number_type = phonenumbers.number_type(parsed_number)
         timezone1 = timezone.time_zones_for_number(parsed_number)
         timezoneF = ', '.join(timezone1)
@@ -112,9 +109,7 @@ def phonesearch():
         print(f" {W}E.164 format         :{G} {phonenumbers.format_number(parsed_number, phonenumbers.PhoneNumberFormat.E164)}")
         print(f" {W}Country code         :{G} {parsed_number.country_code}")
         print(f" {W}Local number         :{G} {parsed_number.national_number}")
-        input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press Enter to continue")
-        from main import mainopt
-        mainopt()
+        
         if number_type == phonenumbers.PhoneNumberType.MOBILE:
             print(f" {W}Type                 :{G} This is a mobile number")
         elif number_type == phonenumbers.PhoneNumberType.FIXED_LINE:
@@ -123,54 +118,70 @@ def phonesearch():
             print(f" {W}Type                 :{G} This is another type of number")
 
     except KeyboardInterrupt:
-        print(f"")
-        
+        print()
+    except Exception as e:
+        print(f"{R}Error parsing phone number: {e}{R}")
+
+    input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press Enter to continue")
+    mainopt()
+
 def IP_Track():  
-    ip = input(f"{W}\n{G}[{G}{Y}+{Y}{G}]{G} Enter IP target : {G}") #INPUT IP ADDRESS
+    ip = input(f"{W}\n{G}[{G}{Y}+{Y}{G}]{G} Enter IP target : {G}") 
     print()
     print(f' {W}============= {G}SHOW INFORMATION IP ADDRESS {W}=============')
-    req_api = requests.get(f"http://ipwho.is/{ip}") #API IPWHOIS.IS
-    ip_data = json.loads(req_api.text)
-    time.sleep(2)
-    print(f"{W}\n IP target       :{G}", ip)
-    print(f"{W} Type IP         :{G}", ip_data["type"])
-    print(f"{W} Country         :{G}", ip_data["country"])
-    print(f"{W} Country Code    :{G}", ip_data["country_code"])
-    print(f"{W} City            :{G}", ip_data["city"])
-    print(f"{W} Continent       :{G}", ip_data["continent"])
-    print(f"{W} Continent Code  :{G}", ip_data["continent_code"])
-    print(f"{W} Region          :{G}", ip_data["region"])
-    print(f"{W} Region Code     :{G}", ip_data["region_code"])
-    print(f"{W} Latitude        :{G}", ip_data["latitude"])
-    print(f"{W} Longitude       :{G}", ip_data["longitude"])
-    lat = int(ip_data['latitude'])
-    lon = int(ip_data['longitude'])
-    print(f"{W} Maps            :{G}",f"https://www.google.com/maps/@{lat},{lon},8z")
-    print(f"{W} EU              :{G}", ip_data["is_eu"])
-    print(f"{W} Postal          :{G}", ip_data["postal"])
-    print(f"{W} Calling Code    :{G}", ip_data["calling_code"])
-    print(f"{W} Capital         :{G}", ip_data["capital"])
-    print(f"{W} Borders         :{G}", ip_data["borders"])
-    print(f"{W} Country Flag    :{G}", ip_data["flag"]["emoji"])
-    print(f"{W} ASN             :{G}", ip_data["connection"]["asn"])
-    print(f"{W} ORG             :{G}", ip_data["connection"]["org"])
-    print(f"{W} ISP             :{G}", ip_data["connection"]["isp"])
-    print(f"{W} Domain          :{G}", ip_data["connection"]["domain"])
-    print(f"{W} ID              :{G}", ip_data["timezone"]["id"])
-    print(f"{W} ABBR            :{G}", ip_data["timezone"]["abbr"])
-    print(f"{W} DST             :{G}", ip_data["timezone"]["is_dst"])
-    print(f"{W} Offset          :{G}", ip_data["timezone"]["offset"])
-    print(f"{W} UTC             :{G}", ip_data["timezone"]["utc"])
-    print(f"{W} Current Time    :{G}", ip_data["timezone"]["current_time"])
+    try:
+        req_api = requests.get(f"http://ipwho.is/{ip}", timeout=5) 
+        ip_data = json.loads(req_api.text)
+        time.sleep(2)
+        print(f"{W}\n IP target       :{G}", ip)
+        print(f"{W} Type IP         :{G}", ip_data.get("type"))
+        print(f"{W} Country         :{G}", ip_data.get("country"))
+        print(f"{W} Country Code    :{G}", ip_data.get("country_code"))
+        print(f"{W} City            :{G}", ip_data.get("city"))
+        print(f"{W} Continent       :{G}", ip_data.get("continent"))
+        print(f"{W} Continent Code  :{G}", ip_data.get("continent_code"))
+        print(f"{W} Region          :{G}", ip_data.get("region"))
+        print(f"{W} Region Code     :{G}", ip_data.get("region_code"))
+        print(f"{W} Latitude        :{G}", ip_data.get("latitude"))
+        print(f"{W} Longitude       :{G}", ip_data.get("longitude"))
+        
+        lat = int(ip_data.get('latitude', 0))
+        lon = int(ip_data.get('longitude', 0))
+        print(f"{W} Maps            :{G}", f"https://www.google.com/maps/@{lat},{lon},8z")
+        
+        print(f"{W} EU              :{G}", ip_data.get("is_eu"))
+        print(f"{W} Postal          :{G}", ip_data.get("postal"))
+        print(f"{W} Calling Code    :{G}", ip_data.get("calling_code"))
+        print(f"{W} Capital         :{G}", ip_data.get("capital"))
+        print(f"{W} Borders         :{G}", ip_data.get("borders"))
+        
+        flag = ip_data.get("flag", {})
+        print(f"{W} Country Flag    :{G}", flag.get("emoji"))
+        
+        conn = ip_data.get("connection", {})
+        print(f"{W} ASN             :{G}", conn.get("asn"))
+        print(f"{W} ORG             :{G}", conn.get("org"))
+        print(f"{W} ISP             :{G}", conn.get("isp"))
+        print(f"{W} Domain          :{G}", conn.get("domain"))
+        
+        tz = ip_data.get("timezone", {})
+        print(f"{W} ID              :{G}", tz.get("id"))
+        print(f"{W} ABBR            :{G}", tz.get("abbr"))
+        print(f"{W} DST             :{G}", tz.get("is_dst"))
+        print(f"{W} Offset          :{G}", tz.get("offset"))
+        print(f"{W} UTC             :{G}", tz.get("utc"))
+        print(f"{W} Current Time    :{G}", tz.get("current_time"))
+    except requests.RequestException as e:
+        print(f"{R}An error occurred during IP tracking: {e}{R}")
+
     input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Press enter to continue")
-    from main import mainopt
     mainopt()
 
 def chkver():
     raw_url = 'https://raw.githubusercontent.com/Mrprogramer885/source/main/versioninfo.txt'
 
     try:   
-        response = requests.get(raw_url)
+        response = requests.get(raw_url, timeout=5)
         response.raise_for_status()  
 
         file_content = response.text
@@ -181,19 +192,10 @@ def chkver():
             version_str = version_str.strip()
             if version_str > '1.2.1':
                 print(f"{G}[{G}{Y}+{Y}{G}]{G}{G}New update available.{G}")
-                input()
-                from main import mainopt
-                mainopt()
             else:
                 print(f"{G}[{G}{Y}+{Y}{G}]{G}{G}No updates available.{G}")
-                input()
-                from main import mainopt
-                mainopt()
         else:
             print(f"{G}[{G}{Y}+{Y}{G}]{G}{G}Version information not found in the file.{G}")
-            input()
-            from main import mainopt
-            mainopt()
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
 
@@ -226,39 +228,37 @@ def mainopt():
     selvar = input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Select option or command and press enter >> {W}")
     
     if selvar == '1':
-        from main import IP_Track
         IP_Track()
-    if selvar == '2':
-        from main import phonesearch
+    elif selvar == '2':
         phonesearch()
-    if selvar == '3':
-        from main import IgAccInfo
+    elif selvar == '3':
         IgAccInfo()
-    if selvar == '6':
+    elif selvar == '6':
         username = input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Enter Username: ")
         results = namesearch(username)
         for site, url in results.items():
             print(f"[+] {site} : {url}")
         input(f"{G}[{G}{Y}+{Y}{G}]{G}{W}Press enter to continue")
-    if selvar == '10':
+        mainopt()
+    elif selvar == '10':
         print(f"{G}[{G}{Y}+{Y}{G}]{G}Fetching github data...")
-        from main import chkver
         chkver()
         input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
-        from main import mainopt
         mainopt()       
-    if selvar == '11':
-        with open('changelog.txt', 'r') as file:
-            content = file.read()
-            print(content)
-            input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
-            from main import mainopt
-            mainopt()
-    if selvar == '12':
-        XtInfo('Xtool.json')  
+    elif selvar == '11':
+        try:
+            with open(get_root_path('changelog.txt'), 'r') as file:
+                content = file.read()
+                print(content)
+        except FileNotFoundError:
+            print(f"{R}changelog.txt not found in root directory.{R}")
         input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
-        from main import mainopt  
-    if selvar == '13':
+        mainopt()
+    elif selvar == '12':
+        XtInfo(get_root_path('Xtool.json'))  
+        input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
+        mainopt()  
+    elif selvar == '13':
         time.sleep(1.4)
         print("Registering all cached data...")
         time.sleep(2.3)
@@ -266,39 +266,36 @@ def mainopt():
         time.sleep(3.4)
         print(f"{data_deleted_kb} KB of cached data succesfully deleted")
         input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
-        from main import mainopt
-    if selvar == '99': 
-        os.system('cls')
+        mainopt()
+    elif selvar == '99': 
+        os.system('cls' if os.name == 'nt' else 'clear')
         print(f"{R}Xtool terminated{R}")
         time.sleep(0.5)
         print(f"{Y}PRO TIP: Execute command {W}'bash run.sh'{W} {Y}from Xtool directory to start Xtool{Y}")
         exit(0)
-    if selvar == '-h':
-        with open('help.txt', 'r') as file:
-            content = file.read()
-            print(content)
-            input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
-            from main import mainopt 
-    if selvar == '-help':
-        with open('help.txt', 'r') as file:
-            content = file.read()
-            print(content)
-            input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
-            from main import mainopt   
-    if selvar == '-exit': 
-        os.system('cls')
+    elif selvar in ['-h', '-help']:
+        try:
+            with open(get_root_path('help.txt'), 'r') as file:
+                content = file.read()
+                print(content)
+        except FileNotFoundError:
+            print(f"{R}help.txt not found in root directory.{R}")
+        input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
+        mainopt()   
+    elif selvar == '-exit': 
+        os.system('cls' if os.name == 'nt' else 'clear')
         print(f"{R}Xtool terminated{R}")
         time.sleep(0.5)
         print(f"{W}Thanks for using Xtool{W}")
         print(f"{Y}PRO TIP: Execute command {W}'bash run.sh'{W} {Y}from Xtool directory to start Xtool{Y}")
         exit(0)         
-    if selvar == '-info':
-        XtInfo('Xtool.json')  
+    elif selvar == '-info':
+        XtInfo(get_root_path('Xtool.json'))  
         input(f"{G}[{G}{Y}+{Y}{G}]{G}{W} Press enter to continue")
-        from main import mainopt
         mainopt()      
     else:
         print(f"{G}[{G}{Y}+{Y}{G}]{G}{R}Invalid selection{R}")  
-        from main import mainopt
         mainopt()  
-    
+
+if __name__ == "__main__":
+    mainopt()

@@ -3,7 +3,7 @@ echo ---------------------------------------------------------------------
 echo By continuing you agree to this:
 echo Author of Xtool is not responsible for any damage you have done by using this tool.
 echo This tool is made only for educational purposes, any illegal action done with this this tool is your problem, Not Mine.
-echo This was made by Petrvrba03 and it is the only developer of this tool, anyone other is not.
+echo This was made by theczechceo and it is the only developer of this tool, anyone other is not.
 echo note that if you downloaded this tool from anywhere else than github or purchased it, it may be infected and not safe. delete it immediately.
 echo This tool does not allows you to hack, stalk, or destroy online things such as emails, electronic devices or anything else.
 echo ---------------------------------------------------------------------

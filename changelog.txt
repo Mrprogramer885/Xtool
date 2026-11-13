@@ -1,11 +1,14 @@
-changelog to 1.0.0 Alpha version:
+changelog to 1.2.5 beta version:
 
---First version of Xtool--
+-Code fully refined and reworked, now made easier to navigate through.
 
--Added IP and Phone OSINT
+-Added dev notification so you are always informed of whats going on when running Xtool.
 
--Program Closed-Circled (it can run in loop)
+-Cleanup of unused files and folders
 
-We are happy for things we already did and more of them will come in future
+-Fixed double print in start.py
 
-Thanks to everyone reading this from Developer and Owner of Xtool: Petrvrba03
+Its been a very long break from last update, but now im back and updates will start rolling out regularly.
+
+Thanks to everyone for reading this and their support :)
+theczechceo 
